@@ -4,6 +4,8 @@ const settings = {
   dimensions: [ 1080, 1080 ]
 };
 
+let manager;
+
 let text = 'R';
 let fontSize = 1200;
 let fontFamily = 'Serif';
@@ -41,4 +43,36 @@ const sketch = () => {
   };
 };
 
-canvasSketch(sketch, settings);
+const onKeyUp = (e) => {
+  text = e.key.toUpperCase();
+  manager.render();
+}
+
+document.addEventListener('keyup', onKeyUp);
+
+const start = async () => {
+  manager = await canvasSketch(sketch, settings);
+};  
+//canvas sketch is a async function
+
+start();
+
+
+/*
+const url = 'https://picsum.photos/200';
+
+const loadMeSomeImage = (url) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject();
+    img.src = url;
+  });
+};
+
+const start = () => {
+  loadMeSomeImage(url).then(img => {
+
+  })
+};
+*/
